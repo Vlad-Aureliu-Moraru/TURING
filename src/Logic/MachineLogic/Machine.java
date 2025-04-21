@@ -47,6 +47,14 @@ public class Machine {
             throw new IllegalArgumentException("Invalid Final State "+finalState);
         }
     }
+    public StateMachine searchForTransition(String currentState, String toReplace){
+        for(StateMachine state : states){
+            if(state.getCurrentState().equals(currentState) && state.getInstructionToReplace()[0].equals(toReplace)){
+                return state;
+            }
+        }
+        return null;
+    }
 
     public String toString(){
         StringBuilder sb = new StringBuilder();

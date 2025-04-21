@@ -24,7 +24,7 @@ public class StateMachine {
     }
     public void setInstructions(String toReplace, String movement){
     String regExToReplace = "^./.+$";
-    String regExMovement = "L|R|S";
+    String regExMovement = "L|R|S|H";
     if (toReplace.matches(regExToReplace) && movement.matches(regExMovement)) {
         this.instruction[0] = toReplace;
         this.instruction[1] = movement;
@@ -45,8 +45,8 @@ public class StateMachine {
     public String getInstructionMovement() {
         return instruction[1];
     }
-    public String getInstructionToReplace() {
-        return instruction[0];
+    public String[] getInstructionToReplace() {
+        return instruction[0].split("/");
     }
     public String toString() {
         return "{" + currentState + ";" + instruction[0] + ":" + instruction[1]+ ";" + nextState+"}" ;
