@@ -1,0 +1,15 @@
+#ALPHABET
+1
+0
+#INITIAL_STATE
+q0
+#FINAL_STATE
+q1
+#MACHINE
+q0;0/1:R;q1
+q0;1/1:R;q1
+q0;B/B:S;q0
+q1;0/1:R;q1
+q1;1/1:S;q0
+q1;B/B:L;q0
+
