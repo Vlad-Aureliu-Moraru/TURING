@@ -11,11 +11,12 @@ import java.util.ArrayList;
 
 public class PANEL_table extends JPanel {
     //?ADDONS
-    private String[] columnNames = {"State","Symbol","Action","Next State"};
+    private String[] columnNames = {"Starea Curenta","Simbol","Actiune","Starea Urmatora"};
     private Object[][] data;
     private ArrayList<StateMachine> states;
     private JTable table;
     //?FORMAT
+    private DefaultTableCellRenderer defaultFormat= new DefaultTableCellRenderer();
 
     public PANEL_table(ArrayList<StateMachine> states) {
         this.states = states;
@@ -23,9 +24,11 @@ public class PANEL_table extends JPanel {
         setBackground(Color.white);
         createTable();
 
+        defaultFormat.setHorizontalAlignment(JLabel.CENTER); // Center text
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         table = new JTable(model);
-
+        table.setFont(new Font("Monospaced", Font.BOLD, 15));
+        table.setDefaultRenderer(Object.class,defaultFormat);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setRowHeight(25);
         JScrollPane scrollPane = new JScrollPane(table);

@@ -4,7 +4,7 @@ public class StateMachine {
     private String currentState;
     private String nextState;
     private String[] instruction = new String[2];
-
+    private int index;
 
     public void setCurrentState(String currentState) {
         String regEx = "^q(0|[1-9]*)+$";
@@ -21,6 +21,12 @@ public class StateMachine {
         }else {
             throw new IllegalArgumentException("Invalid Next State");
         }
+    }
+    public void setIndex(int index) {
+        this.index = index;
+    }
+    public int getIndex() {
+        return index;
     }
     public void setInstructions(String toReplace, String movement){
     String regExToReplace = "^./.+$";
@@ -52,6 +58,6 @@ public class StateMachine {
         return instruction[0].split("/")[index];
     }
     public String toString() {
-        return "{" + currentState + ";" + instruction[0] + ":" + instruction[1]+ ";" + nextState+"}" ;
+        return index+"{" + currentState + ";" + instruction[0] + ":" + instruction[1]+ ";" + nextState+"}" ;
     }
 }

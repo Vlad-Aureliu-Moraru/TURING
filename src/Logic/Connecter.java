@@ -1,8 +1,11 @@
 package Logic;
 
 import Logic.MachineLogic.Band;
+import Logic.MachineLogic.Instruction;
 import Logic.MachineLogic.Machine;
 import Logic.MachineLogic.StateMachine;
+
+import java.util.ArrayList;
 
 public class Connecter {
     private ReadMachine readMachine;
@@ -13,6 +16,8 @@ public class Connecter {
     private boolean halted = false;
     private boolean accepted = false;
     private boolean transitionNotFound = false;
+
+    private ArrayList<Instruction> instructions = new ArrayList<>();
     public Connecter() {
         band.setToCheck("");
 //        Touring();
@@ -23,7 +28,9 @@ public class Connecter {
     }
     public void Touring(){
         while (!halted){
+            Instruction instructionToAdd = new Instruction();
         System.out.println("-STRING - " + band.getToCheck());
+            instructionToAdd.setTape(band.getToCheck());
         String currentSymbol = String.valueOf(band.getCharAtHead());
         System.out.println("-Current State : "+currentState);
         StateMachine stateMachine =  machine.searchForTransition(currentState,currentSymbol);
@@ -34,6 +41,8 @@ public class Connecter {
             break;
         }
         System.out.println("--found transition : "+stateMachine);
+            instructionToAdd.setHeadPosition(band.getHead());
+            instructionToAdd.setFoundTransitionIndex(stateMachine.getIndex());
         String symboleReplacement = stateMachine.getInstructionToReplace(1);
         System.out.println("---Replacing - " +band.getCharAtHead()+" - with - "+symboleReplacement.toCharArray()[0]);
         band.replaceAtHead(symboleReplacement.charAt(0));
@@ -49,16 +58,13 @@ public class Connecter {
             halted = true;
         }
         currentState = stateMachine.getNextState();
+        instructions.add(instructionToAdd);
         }
         if (halted && !transitionNotFound && (machine.getFinalStates().contains(currentState)||currentState.equals(machine.getStartState()))){
             accepted = true;
         }
         System.out.println("---Accepted : "+accepted);
         System.out.println(band.getToCheck());
-        halted = false;
-        accepted = false;
-        band.resetHead();
-        currentState= machine.getStartState();
     }
     public Machine getMachine() {
         return machine;
@@ -66,7 +72,25 @@ public class Connecter {
     public Band getBand() {
         return band;
     }
-
+    public boolean isAccepted() {
+        return accepted;
+    }
+    public boolean isHalted() {
+        return halted;
+    }
+    public boolean isTransitionNotFound() {
+        return transitionNotFound;
+    }
+    public ArrayList<Instruction> getInstructions() {
+        return instructions;
+    }
+    public void resetMachine(){
+        instructions.clear();
+        halted = false;
+        accepted = false;
+        band.resetHead();
+        currentState= machine.getStartState();
+    }
     public void setBandToCheck(String toCheck) {
         this.band.setToCheck(toCheck);
     }

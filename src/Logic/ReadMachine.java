@@ -12,6 +12,7 @@ public class ReadMachine {
     private BufferedReader bufferedReader;
     private Machine machine;
     private int state =0;
+    private int index =0;
     public ReadMachine(Machine machine) {
         this.machine = machine;
         try {
@@ -62,6 +63,8 @@ public class ReadMachine {
         String[] instructions = split[1].split(":");
         stateMachine.setInstructions(instructions[0],instructions[1]);
         stateMachine.setNextState(split[2]);
+        stateMachine.setIndex(index);
+        index++;
         machine.addState(stateMachine);
     }
     public void readStartState(String line){
