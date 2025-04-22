@@ -62,6 +62,8 @@ public class Connecter {
         }
         if (halted && !transitionNotFound && (machine.getFinalStates().contains(currentState)||currentState.equals(machine.getStartState()))){
             accepted = true;
+        }else{
+            System.out.println("---Halting but not accepted because : "+halted+" "+transitionNotFound+" "+(machine.getFinalStates().contains(currentState)||currentState.equals(machine.getStartState())));
         }
         System.out.println("---Accepted : "+accepted);
         System.out.println(band.getToCheck());
@@ -81,6 +83,7 @@ public class Connecter {
     public void resetMachine(){
         instructions.clear();
         halted = false;
+        transitionNotFound = false;
         accepted = false;
         band.resetHead();
         currentState= machine.getStartState();
