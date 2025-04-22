@@ -3,7 +3,6 @@ package Logic;
 import Logic.MachineLogic.Machine;
 import Logic.MachineLogic.StateMachine;
 
-import javax.crypto.Mac;
 import java.io.BufferedReader;
 import java.io.FileReader;
 

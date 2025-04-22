@@ -75,12 +75,6 @@ public class Connecter {
     public boolean isAccepted() {
         return accepted;
     }
-    public boolean isHalted() {
-        return halted;
-    }
-    public boolean isTransitionNotFound() {
-        return transitionNotFound;
-    }
     public ArrayList<Instruction> getInstructions() {
         return instructions;
     }
@@ -90,8 +84,5 @@ public class Connecter {
         accepted = false;
         band.resetHead();
         currentState= machine.getStartState();
-    }
-    public void setBandToCheck(String toCheck) {
-        this.band.setToCheck(toCheck);
     }
 }
