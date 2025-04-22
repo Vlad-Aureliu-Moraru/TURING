@@ -45,8 +45,11 @@ public class StateMachine {
     public String getInstructionMovement() {
         return instruction[1];
     }
-    public String[] getInstructionToReplace() {
-        return instruction[0].split("/");
+    public String getInstructionToReplace() {
+        return instruction[0];
+    }
+    public String getInstructionToReplace(int index) {
+        return instruction[0].split("/")[index];
     }
     public String toString() {
         return "{" + currentState + ";" + instruction[0] + ":" + instruction[1]+ ";" + nextState+"}" ;

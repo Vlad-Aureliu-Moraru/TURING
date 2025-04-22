@@ -3,9 +3,14 @@ package Logic.MachineLogic;
 public class Band {
     private String toCheck;
     private int HEAD = 1;
+    public char[] toCheckArray;
 
     public void setToCheck(String toCheck) {
         this.toCheck = "B"+toCheck+"B";
+        toCheckArray = new char[this.toCheck.length()];
+        for (int i = 0; i < this.toCheck.length(); i++) {
+            toCheckArray[i] = this.toCheck.charAt(i);
+        }
     }
     public char getCharAtHead(){
         return toCheck.charAt(HEAD);
@@ -31,6 +36,21 @@ public class Band {
     public String getToCheck() {
         return toCheck;
     }
-
-    //    private String currentState;
+    public char[] getToCheckArray() {
+        return toCheckArray;
+    }
+    public void resetHead(){
+        HEAD = 1;
+    }
+    public int getHead() {
+        return HEAD;
+    }
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Tape : "+toCheck+"\n");
+        for (int i = 0; i < toCheckArray.length; i++) {
+            sb.append(toCheckArray[i]+" ; ");
+        }
+        return sb.toString();
+    }
 }

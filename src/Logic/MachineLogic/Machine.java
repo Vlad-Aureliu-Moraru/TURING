@@ -49,7 +49,7 @@ public class Machine {
     }
     public StateMachine searchForTransition(String currentState, String toReplace){
         for(StateMachine state : states){
-            if(state.getCurrentState().equals(currentState) && state.getInstructionToReplace()[0].equals(toReplace)){
+            if(state.getCurrentState().equals(currentState) && state.getInstructionToReplace(0).equals(toReplace)){
                 return state;
             }
         }
